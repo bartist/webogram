@@ -295,7 +295,6 @@ gulp.task('karma-tdd', function (done) {
 gulp.task('test', function (callback) {
   runSequence(
     ['templates', 'karma-single'],
-    ['codeclimate'],
     callback
   )
 })
