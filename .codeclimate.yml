@@ -9,6 +9,7 @@ engines:
       - javascript
     exclude_paths:
       - "gulpfile.js"
+      - test/
   eslint:
     enabled: true
   fixme:
@@ -19,5 +20,5 @@ ratings:
   - "**.js"
 exclude_paths:
 - app/vendor/
+- node_modules/
 - scripts/
-- test/

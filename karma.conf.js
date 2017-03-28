@@ -73,8 +73,12 @@ module.exports = function(config) {
 
 
     coverageReporter: {
-        type: 'text',
-        dir: 'coverage/'
+      dir: '../coverage/',
+      reporters: [
+        { type: 'text' },
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' }
+      ]
     },
 
 
@@ -106,6 +110,6 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity,
+    concurrency: Infinity
   })
 }
