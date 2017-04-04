@@ -7,8 +7,13 @@ node_js:
 sudo: required
 before_install:
   - npm install -g node-gyp
-  
+
 addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-5
   code_climate:
     repo_token: '129e193002b4d0718401e18f5960da5c10aa8dca13fe6115ef313a071764e71a'
 
