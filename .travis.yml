@@ -1,8 +1,6 @@
 #.travis.yml
 
 language: node_js
-node_js:
-  - "6.10.1"
 
 addons:
   code_climate:
