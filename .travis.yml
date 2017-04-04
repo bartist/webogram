@@ -1,21 +1,28 @@
 #.travis.yml
 
 language: node_js
+sudo: false
 node_js:
-  - "6.10.1"
+  - '6'
 
-sudo: required
 before_install:
   - npm install -g node-gyp
 
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - bower_components
+
+env:
+  global:
+    - CXX=g++-4.8  # node 4 likes the G++ v4.8 compiler
 
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-5
+      - g++-4.8
   code_climate:
     repo_token: '129e193002b4d0718401e18f5960da5c10aa8dca13fe6115ef313a071764e71a'
 
