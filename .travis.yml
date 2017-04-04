@@ -1,0 +1,24 @@
+#.travis.yml
+
+language: node_js
+node_js:
+  - "6.9"
+
+addons:
+  code_climate:
+    repo_token: '129e193002b4d0718401e18f5960da5c10aa8dca13fe6115ef313a071764e71a'
+
+branches:
+  only:
+    - codeclimate
+
+before_script:
+  - npm install -g gulp
+  - npm install -g
+
+script:
+  - npm test
+
+after_success:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < lcov.info
