@@ -2,11 +2,13 @@
 
 language: node_js
 node_js:
-  - "6.10.1"
+  - 0.8
 
 sudo: required
 before_install:
   - npm install -g node-gyp
+
+cache: yarn
 
 addons:
   apt:
