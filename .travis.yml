@@ -4,6 +4,10 @@ language: node_js
 node_js:
   - "6.10.1"
 
+sudo: required
+before_install:
+  - npm install -g node-gyp
+  
 addons:
   code_climate:
     repo_token: '129e193002b4d0718401e18f5960da5c10aa8dca13fe6115ef313a071764e71a'
