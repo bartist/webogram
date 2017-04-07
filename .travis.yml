@@ -36,7 +36,8 @@ before_script:
   - gulp templates
 
 script:
-  - npm test
+  - gulp build
+  - gulp test
 
 notifications:
   email:
