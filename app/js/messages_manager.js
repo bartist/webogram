@@ -957,7 +957,24 @@ angular.module('myApp.services')
       })
     }
 
-    function deleteMessages (messageIDs) {
+    function canRevokeMessage(messageID) {
+      if (messageID <= 0 ||
+          !messagesStorage[messageID]) {
+        return false
+      }
+
+      var message = messagesStorage[messageID]
+      if (message._ != 'message' ||
+          message.deleted ||
+          !message.pFlags.out ||
+          message.date < tsNow(true) - 2 * 86400) {
+        return false
+      }
+
+      return true
+    }
+
+    function deleteMessages (messageIDs, revoke) {
       var splitted = AppMessagesIDsManager.splitMessageIDsByChannels(messageIDs)
       var promises = []
       angular.forEach(splitted.msgIDs, function (msgIDs, channelID) {
@@ -995,7 +1012,12 @@ angular.module('myApp.services')
             })
           })
         } else {
+          var flags = 0
+          if (revoke) {
+            flags |= 1
+          }
           promise = MtpApiManager.invokeApi('messages.deleteMessages', {
+            flags: flags,
             id: msgIDs
           }).then(function (affectedMessages) {
             ApiUpdatesManager.processUpdateMessage({
@@ -3017,10 +3039,10 @@ angular.module('myApp.services')
             messagesForHistory[mid] = wasForHistory
           }
 
+          var foundDialog = getDialogByPeerID(peerID)[0]
+          var isTopMessage = foundDialog && foundDialog.top_message == mid
           if (message.clear_history) {
-            var foundDialog = getDialogByPeerID(peerID)
-            if (foundDialog[0] &&
-              foundDialog[0].top_message == mid) {
+            if (isTopMessage) {
               $rootScope.$broadcast('dialog_flush', {peerID: peerID})
             } else {
               $rootScope.$broadcast('history_delete', {peerID: peerID, msgs: [mid]})
@@ -3031,6 +3053,11 @@ angular.module('myApp.services')
               id: message.id,
               mid: mid
             })
+            if (isTopMessage) {
+              var updatedDialogs = {}
+              updatedDialogs[peerID] = foundDialog
+              $rootScope.$broadcast('dialogs_multiupdate', updatedDialogs)
+            }
           }
           break
 
@@ -3392,6 +3419,7 @@ angular.module('myApp.services')
       canMessageBeEdited: canMessageBeEdited,
       canEditMessage: canEditMessage,
       getMessageEditData: getMessageEditData,
+      canRevokeMessage: canRevokeMessage,
       clearDialogCache: clearDialogCache,
       wrapForDialog: wrapForDialog,
       wrapForHistory: wrapForHistory,
