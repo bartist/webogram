@@ -31,8 +31,8 @@ before_script:
   - gulp templates
 
 script:
-  - gulp build
   - gulp test
+  - gulp build
 
 notifications:
   email:
