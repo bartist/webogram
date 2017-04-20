@@ -1,22 +1,25 @@
 ---
 engines:
-  csslint:
-    enabled: true
   duplication:
     enabled: true
     config:
       languages:
       - javascript
     exclude_paths:
-      - "gulpfile.js"
-      - test/
+    - gulpfile.js
+    - test/
   eslint:
     enabled: true
   fixme:
     enabled: true
+  stylelint:
+    enabled: true
 ratings:
   paths:
   - "**.css"
+  - "**.less"
+  - "**.scss"
+  - "**.sss"
   - "**.js"
 exclude_paths:
 - app/vendor/
