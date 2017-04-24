@@ -40,5 +40,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < coverage/report-lcov/lcov.info
+  - ./test/codeClimate.sh
