@@ -1,0 +1,21 @@
+#.travis.yml
+
+language: node_js
+node_js:
+  - "6.9"
+
+branches:
+  only:
+    - master
+    - codeclimate
+
+before_script:
+  - npm install -g gulp
+  - npm install
+
+script:
+  - gulp test
+  - gulp standard
+
+after_success:
+  - gulp codeclimate

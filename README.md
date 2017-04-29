@@ -1,4 +1,6 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Code Climate](https://codeclimate.com/github/bartist/webogram/badges/gpa.svg)](https://codeclimate.com/github/bartist/webogram)
+[![Test Coverage](https://codeclimate.com/github/bartist/webogram/badges/coverage.svg)](https://codeclimate.com/github/bartist/webogram/coverage)
 [![Stories in Ready](https://badge.waffle.io/zhukov/webogram.png?label=ready&title=Ready)](https://waffle.io/zhukov/webogram)
 
 ## [Webogram](https://web.telegram.org) — Telegram Web App

@@ -1,5 +1,6 @@
 var packageJson = require('./package.json')
 var gulp = require('gulp')
+var reporter = require('gulp-codeclimate-reporter')
 var $ = require('gulp-load-plugins')({lazy: false})
 var es = require('event-stream')
 var path = require('path')
@@ -303,6 +304,12 @@ gulp.task('tdd', function (callback) {
     'templates', 'karma-tdd',
     callback
   )
+})
+
+gulp.task('codeclimate', function () {
+  return gulp
+    .src(['coverage/report-lcov/lcov.info'], { read: false })
+    .pipe(reporter({ token: '129e193002b4d0718401e18f5960da5c10aa8dca13fe6115ef313a071764e71a' }))
 })
 
 gulp.task('build', ['clean'], function (callback) {
