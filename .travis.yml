@@ -28,7 +28,6 @@ branches:
 before_script:
   - npm install -g gulp
   - npm install -g
-  - gulp templates
 
 script:
   - gulp test
