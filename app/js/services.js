@@ -1,5 +1,5 @@
 /*!
- * Webogram v0.5.5 - messaging web application for MTProto
+ * Webogram v0.5.6 - messaging web application for MTProto
  * https://github.com/zhukov/webogram
  * Copyright (C) 2014 Igor Zhukov <igor.beatle@gmail.com>
  * https://github.com/zhukov/webogram/blob/master/LICENSE
@@ -648,8 +648,8 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
       switch (action) {
         case 'send':
           if (chat._ == 'channel' &&
-            !chat.pFlags.megagroup &&
-            !chat.pFlags.editor) {
+              !chat.pFlags.megagroup &&
+              !chat.pFlags.editor) {
             return false
           }
           break
@@ -660,7 +660,7 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
           if (chat._ == 'channel') {
             if (chat.pFlags.megagroup) {
               if (!chat.pFlags.editor &&
-                !(action == 'invite' && chat.pFlags.democracy)) {
+                  !(action == 'invite' && chat.pFlags.democracy)) {
                 return false
               }
             } else {
@@ -668,7 +668,7 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
             }
           } else {
             if (chat.pFlags.admins_enabled &&
-              !chat.pFlags.admin) {
+                !chat.pFlags.admin) {
               return false
             }
           }
@@ -3381,9 +3381,9 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
       }
 
       if (update._ == 'updateNewMessage' ||
-        update._ == 'updateEditMessage' ||
-        update._ == 'updateNewChannelMessage' ||
-        update._ == 'updateEditChannelMessage') {
+          update._ == 'updateEditMessage' ||
+          update._ == 'updateNewChannelMessage' ||
+          update._ == 'updateEditChannelMessage') {
         var message = update.message
         var toPeerID = AppPeersManager.getPeerID(message.to_id)
         var fwdHeader = message.fwd_from || {}
